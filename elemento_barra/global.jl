@@ -4,7 +4,7 @@
 # VE, VA, VL e Vtheta são vetores de dimensão ne com 
 # os E, A, L e theta de cada elemento
 #
-function Global(ne,nnos,conectividades, VE, VA, VL, Vtheta)
+function Rigidez_global(ne,nnos,conectividades, VE, VA, VL, Vtheta)
 
     # Precisamos definir a matriz global
     K = zeros(2*nnos,2*nnos)
@@ -41,22 +41,30 @@ function Global(ne,nnos,conectividades, VE, VA, VL, Vtheta)
         # Soma Kg nas posições gls em K
         K[gls,gls] .= K[gls,gls] .+ Kg
 
-        #=
-
-            for i=1:4
-                posig = gls[i]
-                for j=1:4
-                    posjg = gls[j]
-                    K[posig,posjg] = K[posig,posjg] + Kg[i,j]
-                end #j
-            end #i  
-
-        =#
-
-
     end #ele
 
     # Retorna a matriz de rigidez do problema
     return K
 
+end
+
+# Montar o vetor de forças global
+function Forca_global(nnos,forcas)
+
+    # Vetor de forças global
+    F = zeros(2*nnos)
+    
+    # Posiciona os valores de força no vetor 
+    # de forças global
+    for i=1:size(forcas,1)
+        # Garante que gl é um inteiro
+        # gl global é calculado pela equação de Localização
+        gl = 2*(Int(forcas[i,1])-1) + Int(forcas[i,2])
+        valor = forcas[i,3]
+        F[gl] = valor
+    end #i
+
+    # Retorna a matriz de força global do problema
+    return F
+    
 end
