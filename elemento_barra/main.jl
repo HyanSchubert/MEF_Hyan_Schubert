@@ -9,18 +9,15 @@ include("apoios.jl")
 function main()
 
     # Entrada de dados na mão!
-    ne = 5
-    nnos = 4
-    conectividades = [2 1;
+    ne = 3
+    nnos = 3
+    conectividades = [1 2;
                       2 3;
-                      4 3;
-                      1 4;
                       1 3]
 
     coord = [0.0 0.0;
              1.0 0.0;
-             1.0 1.0;
-             0.0 1.0]                  
+             1.0 1.0]                  
 
     VE = 210E9*ones(ne)
     VA = 1E-4*ones(ne)
@@ -36,9 +33,9 @@ function main()
     
     # Condições de contorno naturais
     #        nó gll valor
-    forcas = [2 1 300.0;
-              3 1 600.0;
-              3 2 -500.0]
+    forcas = [2 1 1000.0;
+              3 1 1000.0;
+              3 2 1000.0]
 
     # Monta a matriz global do problema
     K = Rigidez_global(ne,nnos,conectividades, VE, VA, VL, Vtheta)
@@ -63,8 +60,8 @@ function main()
     # KU = F
     U = K\F
 
-    return UL, U
+    return UL
 
-end #main_CC
+end #main
 
 
