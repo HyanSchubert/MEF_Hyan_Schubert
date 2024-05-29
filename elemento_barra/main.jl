@@ -19,8 +19,8 @@ function main()
              1.0 0.0;
              1.0 1.0]                  
 
-    VE = 210E9*ones(ne)
-    VA = 1E-4*ones(ne)
+    VE = 207E9*ones(ne)
+    VA = 3.02E-3*ones(ne)
 
     # Pré-processamento
     VL,Vtheta = Pre_processa(ne,coord,conectividades)
@@ -33,9 +33,12 @@ function main()
     
     # Condições de contorno naturais
     #        nó gll valor
-    forcas = [2 1 1000.0;
-              3 1 1000.0;
-              3 2 1000.0]
+    θ = pi/4
+    F = 5000.0
+    P = 2500.0
+    forcas = [2 1 F;
+              3 1 P*cos(θ);
+              3 2 P*sin(θ)]
 
     # Monta a matriz global do problema
     K = Rigidez_global(ne,nnos,conectividades, VE, VA, VL, Vtheta)
