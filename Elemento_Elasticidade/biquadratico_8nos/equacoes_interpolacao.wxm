@@ -1,0 +1,198 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 21.05.2 ] */
+/* [wxMaxima: title   start ]
+Elemento Bi-Quadrático de 8 nós
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Define as variaevis r e s dos nós
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+declare(ri, real);
+delcare(si, real);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Função de interpolação para os nós 1, 2, 3 e 4
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Ni: 0.25*(1+r*ri)*(1+s*si)*(r*ri + s*si -1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Função de interpolação para os nós 5 e 7
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Nii: 0.5*(1-r^2)*(1+s*si);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Função de interpolação para nós 6 e8
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Niii: 0.5*(1+r*ri)*(1-s^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Encontrando as funções de interpolação: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N1: ev(Ni, ri=-1, si=-1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N2: ev(Ni, ri=1, si=-1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N3: ev(Ni, ri=1, si=1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N4: ev(Ni, ri=-1, si=1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N5: ev(Nii, ri=0, si=-1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N6: ev(Niii, ri=1, si=0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N7: ev(Nii, ri=0, si=1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N8: ev(Niii, ri=-1, si=0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Derivadas em relação à r:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN1_dr: ratsimp(diff(N1,r));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN2_dr: ratsimp(diff(N2,r));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN3_dr: ratsimp(diff(N3,r));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN4_dr: ratsimp(diff(N4,r));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN5_dr: ratsimp(diff(N5,r));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN6_dr: ratsimp(diff(N6,r));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN7_dr: ratsimp(diff(N7,r));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN8_dr: ratsimp(diff(N8,r));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Derivadas em relação à s:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN1_ds: ratsimp(diff(N1,s));
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN2_ds: ratsimp(diff(N2,s));
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN3_ds: ratsimp(diff(N3,s));
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN4_ds: ratsimp(diff(N4,s));
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN5_ds: ratsimp(diff(N5,s));
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN6_ds: ratsimp(diff(N6,s));
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN7_ds: ratsimp(diff(N7,s));
+;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dN8_ds: ratsimp(diff(N8,s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Passar funções e derivadas para o Júlia
+   [wxMaxima: comment end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 21.05.2"$
