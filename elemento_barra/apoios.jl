@@ -93,12 +93,12 @@ end
 
 #
 # Aplica condições de contorno essenciais (deslocamentos
-# prescritos) e reslve por rearranjo 
+# prescritos) e resolve por rearranjo 
 #
 function Rearranjo!(nnos,apoios,K,F)
 # Numero de graus de liberdade do problema
 
-    # graus de liberdado
+    # graus de liberdade
     n = 2*nnos
 
     # Modifica o vetor de carregamentos
@@ -109,7 +109,7 @@ function Rearranjo!(nnos,apoios,K,F)
         # vetor deslocamentos
         no  = Int(apoios[j,1])
         gll = Int(apoios[j,2])
-        valor = Int(apoios[j,3])
+        valor = apoios[j,3]
 
         # Gl global
         gl = 2*(no-1) + gll
@@ -128,6 +128,7 @@ function Rearranjo!(nnos,apoios,K,F)
         # No e gl local do apoio
         no  = Int(apoios[i,1])
         gll = Int(apoios[i,2])
+        valor = apoios[i,3]
 
         # Gl global
         gl = 2*(no-1) + gll
@@ -137,7 +138,7 @@ function Rearranjo!(nnos,apoios,K,F)
         K[:,gl] .= 0.0
 
         # Zera o vetor de forças nesse gl
-        F[gl] = 0.0
+        F[gl] = valor
 
         # Coloca 1.0 na diagonal
         K[gl,gl] = 1.0
